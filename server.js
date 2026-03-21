@@ -1,5 +1,10 @@
-const app = require('./src/app');
+// start server is here and connect DB is in db.js
+require("dotenv").config(); // 👈 MUST BE FIRST
 
+const app = require('./src/app');
+const connectDB = require('./src/db/db');
+
+connectDB();
 
 
 app.listen(3000, () => {
