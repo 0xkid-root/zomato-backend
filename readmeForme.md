@@ -38,3 +38,18 @@ Har next request me browser automatically token bhejega
 ✔ Auto authentication chahiye
 
 👉 Cookies BEST choice 🔥
+
+
+Golden Rules (Confusion Killer)
+
+👉 Rule 1:
+“Token sirf 2 jagah banta hai → register/login”
+
+👉 Rule 2:
+“Middleware kabhi token banata nahi, sirf check karta hai”
+
+👉 Rule 3:
+“Password kabhi response me nahi jana chahiye”
+
+👉 Rule 4:
+“Cookie = storage, JWT = identity”
