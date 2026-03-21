@@ -53,3 +53,33 @@ Golden Rules (Confusion Killer)
 
 👉 Rule 4:
 “Cookie = storage, JWT = identity”
+
+
+🔑 2. Header-Based Auth (Bearer Token)
+req.headers.authorization
+
+✔ Manual bhejna padta hai
+✔ Mobile apps / APIs me use hota hai
+
+Mobile apps header kyu use karti hain?
+🧠 Short answer:
+
+👉 Mobile apps me cookies reliable nahi hoti, isliye header (Bearer token) use karte hain.
+
+
+Deep Explanation (Samajhne wala part)
+🌐 Web (Browser)
+Browser khud cookies handle karta hai
+Automatically send karta hai
+httpOnly secure storage milta hai
+
+👉 Isliye:
+✔ Cookies best for web apps
+
+📱 Mobile Apps (React Native / Android / iOS)
+
+👉 Yaha problem hai:
+
+❌ 1. Cookie automatic nahi hoti
+Mobile apps me browser jaisa system nahi hota
+Cookies auto store/send nahi hoti
