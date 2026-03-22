@@ -16,7 +16,7 @@ app.use(cors(
 ));
 
 app.use('/api/auth', authRoutes);
-app.use('/api/v1', foodPartnerRoutes);
+app.use('/api/auth', foodPartnerRoutes);
 app.use('/api/food', foodRoutes);
 
 module.exports = app;
