@@ -12,7 +12,7 @@ const createFood = async(req,res)=>{
         if (!req.foodPartner) {
          return res.status(401).json({ message: "Unauthorized" });
         }
-        
+
         const fileUplodeResult = await uploadFile(req.file.buffer, uuid());
         const foodItem = await FoodModel.create({
         name: req.body.name,
@@ -33,6 +33,20 @@ const createFood = async(req,res)=>{
     }
 }
 
+const getFoodItems = async(req,res)=>{
+    try{
+        const foodItems = await FoodModel.find();
+        return res.status(200).json({
+            message:"Food items fetched successfully",
+            food:foodItems
+        })
+    }catch(error){
+        return res.status(500).json({message:error.message})
+    }
+}
+
+
 module.exports={
-    createFood
+    createFood,
+    getFoodItems
 }

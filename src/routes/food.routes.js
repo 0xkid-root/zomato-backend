@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const { createFood } = require('../controllers/food.controller');
-const { authFoodPartnerMiddleware } = require('../middlewares/auth.middleware');
+const { createFood,getFoodItems } = require('../controllers/food.controller');
+const { authFoodPartnerMiddleware,authUserMiddleware } = require('../middlewares/auth.middleware');
 
 const upload = multer({
     storage: multer.memoryStorage(),
@@ -30,5 +30,7 @@ router.post(
     validateFile,
     createFood
 );
+
+router.get("/",authUserMiddleware, getFoodItems);
 
 module.exports = router;
