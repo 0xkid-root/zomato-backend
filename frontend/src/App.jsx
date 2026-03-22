@@ -1,11 +1,12 @@
 import React from 'react'
 import './App.css'
+import AppRoutes from './routes/AppRoutes'
 
 function App() {
 
   return (
     <>
-      <h1>Food Delivery App</h1>
+    <AppRoutes/>
     </>
   )
 }
