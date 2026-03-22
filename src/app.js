@@ -8,10 +8,15 @@ const foodRoutes = require('./routes/food.routes');
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors(
+    {
+        origin: ['http://localhost:3000','http://localhost:3001','http://localhost:5173','http://localhost:5174'],
+        credentials: true,
+    }
+));
 
-app.use('/api/v1', authRoutes);
-app.use('/api/v1', foodPartnerRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/auth', foodPartnerRoutes);
 app.use('/api/food', foodRoutes);
 
 module.exports = app;

@@ -4,14 +4,14 @@ const jwt = require("jsonwebtoken");
 
 const registerFoodPartner = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
-        if(!name || !email || !password)
+        const { name, email, password,phone,address,contactName } = req.body;
+        if(!name || !email || !password || !phone || !address || !contactName)
             return res.status(400).json({ message: "All fields are required" });
         const foodPartner = await foodPartnerModel.findOne({ email });
         if (foodPartner) return res.status(400).json({ message: "Food partner already exists" });
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const newFoodPartner = await foodPartnerModel.create({ name, email, password: hashedPassword });
+        const newFoodPartner = await foodPartnerModel.create({ name, email, password: hashedPassword, phone, address, contactName });
         const token =  jwt.sign({ id: newFoodPartner._id }, process.env.JWT_SECRET, { expiresIn: '1d'
 
          });
@@ -25,6 +25,9 @@ const registerFoodPartner = async (req, res) => {
             id: newFoodPartner._id,
             name: newFoodPartner.name,
             email: newFoodPartner.email,
+            phone: newFoodPartner.phone,
+            address: newFoodPartner.address,
+            contactName: newFoodPartner.contactName,
         } ,            
         token: token,
     });
