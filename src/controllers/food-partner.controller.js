@@ -25,6 +25,9 @@ const registerFoodPartner = async (req, res) => {
             id: newFoodPartner._id,
             name: newFoodPartner.name,
             email: newFoodPartner.email,
+            phone: newFoodPartner.phone,
+            address: newFoodPartner.address,
+            contactName: newFoodPartner.contactName,
         } ,            
         token: token,
     });
