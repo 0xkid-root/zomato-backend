@@ -1,6 +1,8 @@
 const foodPartnerModel = require('../models/foodpartner.model');
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
+const FoodModel = require('../models/food.model');
+
 
 const registerFoodPartner = async (req, res) => {
     try {
@@ -79,6 +81,32 @@ const logoutFoodPartner = async (req, res) => {
 };
 
 
+const getFoodPartnerById = async (req, res) => {
+    try{
+        const foodPartnerId = req.params.id;
+        const foodPartner = await foodPartnerModel.findById(foodPartnerId);
+        const foodItemByFoodPartner = await FoodModel.find({
+            foodPartnerId: foodPartnerId
+        })
 
 
-module.exports = { registerFoodPartner, loginFoodPartner, logoutFoodPartner };   
+        if(!foodPartner){
+            return res.status(404).json({ message: "Food partner not found" });
+        }
+        return res.status(200).
+        json({
+             message: "Food partner found successfully", 
+             foodPartner:{
+                ...foodPartner.toObject(),
+                foodItems: foodItemByFoodPartner
+             }
+            });
+
+    }catch(error){
+        return res.status(500).json({ message: error.message });
+    }
+};
+
+
+
+module.exports = { registerFoodPartner, loginFoodPartner, logoutFoodPartner,getFoodPartnerById };   
